@@ -1,6 +1,5 @@
 package com.mendel.app.entity;
 
-import com.mendel.app.enums.TransactionType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +10,7 @@ public class TransactionDTO {
 
     @Id
     private String transactionId;
-    private TransactionType type;
+    private String type;
     private double amount;
     private long parentId;
 }
