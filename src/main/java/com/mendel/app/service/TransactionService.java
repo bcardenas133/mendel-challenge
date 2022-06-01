@@ -9,7 +9,7 @@ public interface TransactionService {
 
     TransactionDTO saveTransaction(TransactionDTO transactionDTO);
 
-    List<Double> getTransactionsIdByType(String transactionType);
+    List<Long> getTransactionsIdByType(String transactionType);
 
     TransactionsSumDTO getTransactionsSum(long transactionId);
 }

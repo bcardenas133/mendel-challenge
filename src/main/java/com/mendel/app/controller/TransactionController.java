@@ -19,7 +19,8 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PutMapping
-    public ResponseEntity<TransactionDTO> saveTransaction(@Valid @RequestParam Double transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
+    public ResponseEntity<TransactionDTO> saveTransaction(@Valid @RequestParam Long transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
+        transactionDTO.setTransactionId(transactionId);
         TransactionDTO transaction = transactionService.saveTransaction(transactionDTO);
         return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     }
