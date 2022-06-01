@@ -19,19 +19,19 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PutMapping
-    public ResponseEntity<TransactionDTO> saveTransaction(@Valid @RequestParam Long transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
+    public ResponseEntity<TransactionDTO> saveTransaction(@Valid @RequestParam String transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
         transactionDTO.setTransactionId(transactionId);
         TransactionDTO transaction = transactionService.saveTransaction(transactionDTO);
         return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     }
 
     @GetMapping("/types")
-    public List<Double> getByType(@Valid @RequestParam String transactionType) {
+    public List<Long> getByType(@Valid @RequestParam String transactionType) {
         return transactionService.getTransactionsIdByType(transactionType);
     }
 
     @GetMapping("/sum")
-    public ResponseEntity<TransactionsSumDTO> getSum(@Valid @RequestParam long transactionId) {
+    public ResponseEntity<TransactionsSumDTO> getSum(@Valid @RequestParam String transactionId) {
         return new ResponseEntity<>(transactionService.getTransactionsSum(transactionId), HttpStatus.CREATED);
     }
 }

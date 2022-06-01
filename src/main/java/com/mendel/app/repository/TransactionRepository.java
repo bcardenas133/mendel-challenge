@@ -8,4 +8,5 @@ import java.util.List;
 public interface TransactionRepository extends MongoRepository<TransactionDTO, String> {
 
     List<TransactionDTO> findByType(String type);
+    List<TransactionDTO> findByParentId(long parentId);
 }

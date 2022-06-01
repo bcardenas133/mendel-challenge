@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TransactionDTO {
 
     @Id
-    private long transactionId;
+    private String transactionId;
     private TransactionType type;
     private double amount;
     private long parentId;

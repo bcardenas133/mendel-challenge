@@ -11,5 +11,5 @@ public interface TransactionService {
 
     List<Long> getTransactionsIdByType(String transactionType);
 
-    TransactionsSumDTO getTransactionsSum(long transactionId);
+    TransactionsSumDTO getTransactionsSum(String transactionId);
 }
