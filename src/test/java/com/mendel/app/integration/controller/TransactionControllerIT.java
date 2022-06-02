@@ -84,8 +84,16 @@ public class TransactionControllerIT {
                 .andExpect(content().json("{\"sum\":300}"));
     }
 
-    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+    @DisplayName("Get sum for non existent transactionId.")
+    @Test
+    public void getSumNoTransactionIdTest() throws Exception {
+        mockMvc.perform(get("http://localhost:8080/api/v1/transactions/sum/10")
+                        .contentType("application/json"))
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().json("{\"error\":\"VALIDATION_ERROR\",\"message\":\"There is no transaction for transactionId\",\"status\":500}"));
+    }
 
+    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
         public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
 
