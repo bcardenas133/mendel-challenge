@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.mendel.app.util.Constant.THERE_IS_NO_TRANSACTION_FOR_TRANSACTION_ID;
+import static com.mendel.app.util.Constant.VALIDATION_ERROR;
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -38,7 +41,7 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionsSumDTO getTransactionsSum(String transactionId) {
         Optional<TransactionDTO> transaction = transactionRepository.findById(transactionId);
         if (transaction.isEmpty()) {
-            throw new ApiException("VALIDATION_ERROR", "There is no transaction for transactionId", HttpStatus.INTERNAL_SERVER_ERROR.value());
+            throw new ApiException(VALIDATION_ERROR, THERE_IS_NO_TRANSACTION_FOR_TRANSACTION_ID, HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
         List<TransactionDTO> transactionDTOList = transactionRepository.findByParentId(Long.valueOf(transactionId));
