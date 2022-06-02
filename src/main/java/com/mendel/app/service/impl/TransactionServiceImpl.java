@@ -1,5 +1,6 @@
 package com.mendel.app.service.impl;
 
+import com.mendel.app.entity.SaveTransactionResponseDTO;
 import com.mendel.app.entity.TransactionDTO;
 import com.mendel.app.entity.TransactionsSumDTO;
 import com.mendel.app.exception.ApiException;
@@ -20,8 +21,11 @@ public class TransactionServiceImpl implements TransactionService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
-        return transactionRepository.save(transactionDTO);
+    public SaveTransactionResponseDTO saveTransaction(TransactionDTO transactionDTO) {
+        transactionRepository.save(transactionDTO);
+        SaveTransactionResponseDTO responseDTO = new SaveTransactionResponseDTO();
+        responseDTO.setStatus("ok");
+        return responseDTO;
     }
 
     @Override
@@ -39,7 +43,8 @@ public class TransactionServiceImpl implements TransactionService {
 
         List<TransactionDTO> transactionDTOList = transactionRepository.findByParentId(Long.valueOf(transactionId));
         transactionDTOList.add(transaction.get());
-        Double totalAmount = getAmountsSum(transactionDTOList);
+        List<TransactionDTO> listWithoutDuplicates = transactionDTOList.stream().distinct().collect(Collectors.toList());
+        Double totalAmount = getAmountsSum(listWithoutDuplicates);
         TransactionsSumDTO transactionsSumDTO = new TransactionsSumDTO();
         transactionsSumDTO.setSum(totalAmount);
         return transactionsSumDTO;

@@ -1,5 +1,6 @@
 package com.mendel.app.controller;
 
+import com.mendel.app.entity.SaveTransactionResponseDTO;
 import com.mendel.app.entity.TransactionDTO;
 import com.mendel.app.entity.TransactionsSumDTO;
 import com.mendel.app.service.TransactionService;
@@ -19,9 +20,9 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PutMapping("{transactionId}")
-    public ResponseEntity<TransactionDTO> saveTransaction(@Valid @PathVariable String transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
+    public ResponseEntity<SaveTransactionResponseDTO> saveTransaction(@Valid @PathVariable String transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
         transactionDTO.setTransactionId(transactionId);
-        TransactionDTO transaction = transactionService.saveTransaction(transactionDTO);
+        SaveTransactionResponseDTO transaction = transactionService.saveTransaction(transactionDTO);
         return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     }
 
@@ -32,6 +33,6 @@ public class TransactionController {
 
     @GetMapping("/sum/{transactionId}")
     public ResponseEntity<TransactionsSumDTO> getSum(@Valid @PathVariable String transactionId) {
-        return new ResponseEntity<>(transactionService.getTransactionsSum(transactionId), HttpStatus.CREATED);
+        return new ResponseEntity<>(transactionService.getTransactionsSum(transactionId), HttpStatus.OK);
     }
 }
