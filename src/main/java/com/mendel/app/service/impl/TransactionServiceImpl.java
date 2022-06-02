@@ -23,9 +23,9 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public SaveTransactionResponseDTO saveTransaction(TransactionDTO transactionDTO) {
         transactionRepository.save(transactionDTO);
-        SaveTransactionResponseDTO responseDTO = new SaveTransactionResponseDTO();
-        responseDTO.setStatus("ok");
-        return responseDTO;
+        SaveTransactionResponseDTO saveTransactionResponseDTO = new SaveTransactionResponseDTO();
+        saveTransactionResponseDTO.setStatus("ok");
+        return saveTransactionResponseDTO;
     }
 
     @Override

@@ -22,8 +22,7 @@ public class TransactionController {
     @PutMapping("{transactionId}")
     public ResponseEntity<SaveTransactionResponseDTO> saveTransaction(@Valid @PathVariable String transactionId, @Valid @RequestBody TransactionDTO transactionDTO) {
         transactionDTO.setTransactionId(transactionId);
-        SaveTransactionResponseDTO transaction = transactionService.saveTransaction(transactionDTO);
-        return new ResponseEntity<>(transaction, HttpStatus.CREATED);
+        return new ResponseEntity<>(transactionService.saveTransaction(transactionDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/types/{type}")

@@ -1,7 +1,7 @@
 package com.mendel.app.integration.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mendel.app.mock.Mocks;
+import com.mendel.app.Mocks;
 import com.mendel.app.repository.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
