@@ -6,6 +6,8 @@ import com.mendel.app.entity.TransactionsSumDTO;
 import com.mendel.app.exception.ApiException;
 import com.mendel.app.repository.TransactionRepository;
 import com.mendel.app.service.TransactionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ import static com.mendel.app.util.Constant.VALIDATION_ERROR;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
+
+    private static final Logger logger = LoggerFactory.getLogger(TransactionServiceImpl.class);
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -41,6 +45,7 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionsSumDTO getTransactionsSum(String transactionId) {
         Optional<TransactionDTO> transaction = transactionRepository.findById(transactionId);
         if (transaction.isEmpty()) {
+            logger.error("No transaction founded.");
             throw new ApiException(VALIDATION_ERROR, THERE_IS_NO_TRANSACTION_FOR_TRANSACTION_ID, HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
