@@ -1,7 +1,5 @@
 # Mendel Java Challenge Rest API.
 
-![image](https://bookface-images.s3.amazonaws.com/logos/6fcbf5ae5690bccf19db87fc25fe21d5b2a12c81.png)
-
 **The main technologies used to implement this Rest API are:**
 - Java 17.
 - SpringBoot.
