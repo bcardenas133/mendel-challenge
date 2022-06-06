@@ -27,13 +27,6 @@ This is a postman collection you could use to interact with the app:
 https://www.getpostman.com/collections/ade7123cbdfcbe08c334
 
 
-**FUTURE IMPROVEMENTS**
-
-There are different technologies which could be implemented in order to accomplish with micro-services architecture best practices:
-- Since there is an endpoint which is retrieving certain information, that would be a great idea to implement a cache so we could improve response time.
-- We could make use of a message broker in order to establish an asynchronous communication between others components that could be hitting this api endpoint/s in the future.
-- In case this application receives considerable amount of traffic and maybe some of the external systems that would be queried by the application in the future could be not available, we could implement a circuit-breaker in order to be fault-tolerant and keep instances healthy. With a circuit-breaker we could detect that external systems are not available and configure a fallback url to return any appropiate response.
-
 ## Questions
 
 Please, don't hesistate to contact me in case you have any questions.
